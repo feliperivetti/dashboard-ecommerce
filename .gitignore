@@ -1,0 +1,10 @@
+# Ignorar arquivos de ambiente com senhas e segredos
+.env
+
+# Outras coisas comuns do Python para ignorar
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+data/
