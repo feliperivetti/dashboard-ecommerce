@@ -63,6 +63,11 @@ A preparação dos dados seguiu uma abordagem de **ELT (Extract, Load, Transform
 
 ---
 
-## 📂 Estrutura do Projeto
+## 🛠️ Tecnologias Utilizadas
 
-O código é organizado de forma modular para facilitar a manutenção e escalabilidade:
+* **Linguagem:** Python
+* **Dashboard:** Streamlit
+* **Banco de Dados:** PostgreSQL
+* **Manipulação de Dados:** Pandas
+* **Visualização de Dados:** Plotly Express
+* **Previsão de Séries Temporais:** Prophet
