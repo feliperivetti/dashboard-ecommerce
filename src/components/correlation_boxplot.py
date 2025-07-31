@@ -28,9 +28,10 @@ def display_correlation_boxplot():
                     "dias_para_entrega": "Tempo de Entrega (dias)"
                 },
                 # Ordena o eixo X de 1 a 5
-                category_orders={"review_score": ["1", "2", "3", "4", "5"]}
+                category_orders={"review_score": ["1", "2", "3", "4", "5"]},
+                color_discrete_sequence=px.colors.sequential.Blues_r[1:]
             )
-            
+
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.warning("Não foi possível carregar os dados para a análise de correlação.")

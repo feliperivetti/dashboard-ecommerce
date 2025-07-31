@@ -72,7 +72,7 @@ def display_revenue_forecast():
         # --- CONTROLES DE VOLTA À PÁGINA PRINCIPAL ---
         days_to_forecast = st.number_input(
             "Selecione o número de dias para a previsão futura:",
-            min_value=30, max_value=365, value=90, step=30
+            min_value=30, max_value=365, value=60, step=30
         )
 
         min_date = date(2016, 9, 15)

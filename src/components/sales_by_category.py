@@ -37,7 +37,7 @@ def display_sales_by_category_pie_chart():
                 df_dimension, 
                 values='total_faturamento', 
                 names=column_to_query,
-                color_discrete_sequence=px.colors.sequential.Blues_r # Paleta de cores
+                color_discrete_sequence=px.colors.sequential.Blues_r
             )
             
             # Exibe o gráfico no Streamlit
