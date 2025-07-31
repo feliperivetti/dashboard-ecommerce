@@ -10,9 +10,10 @@ def display_sales_by_category_pie_chart():
 
         # Dicionário que mapeia o nome amigável para a coluna do banco de dados
         categories = {
-            "Estado": "customer_state",
             "Cidade": "customer_city",
-            "Setor de Produto": "product_category_name"
+            "Estado": "customer_state",
+            "Forma de Pagamento": "payment_type",
+            "Setor de Produto": "product_category_name",
         }
 
         # Seletor para o usuário escolher a métrica
@@ -25,7 +26,7 @@ def display_sales_by_category_pie_chart():
         column_to_query = categories[selected_category]
 
         # Chama a função de consulta com a coluna dinâmica
-        df_dimension = queries.get_sales_by_dimension(column_to_query)
+        df_dimension = queries.get_sales_by_dimension(column_to_query, categories.values())
 
         # Verifica se a consulta retornou dados
         if not df_dimension.empty:
