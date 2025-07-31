@@ -32,7 +32,9 @@ def main():
     )
 
     # --- Criação das Abas ---
-    tab1, tab2, tab3 = st.tabs(["📊 Análise de Vendas", "🚚 Análise de Entregas", "🔮 Previsão do Faturamento"])
+    tab1, tab2, tab3 = st.tabs(["📊 Análise de Vendas", 
+                                "🚚 Análise de Entregas", 
+                                "🔮 Previsão do Faturamento"])
 
     # --- Conteúdo da Aba 1: Análise de Vendas ---
     with tab1:
