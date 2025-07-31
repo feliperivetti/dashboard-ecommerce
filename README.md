@@ -1,6 +1,7 @@
 # 📈 Dashboard de Análise de Vendas E-commerce
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B)](https://streamlit.io)
 [![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458)](https://pandas.pydata.org/)
 [![Plotly](https://img.shields.io/badge/Plotly-5.15%2B-3F4F75)](https://plotly.com/)
@@ -42,8 +43,23 @@ O dashboard é organizado em abas para uma navegação intuitiva e focada:
 ### 🔮 Aba: Previsão de Faturamento
 - **Laboratório de Previsão:** Uma seção avançada que utiliza o modelo **Prophet (do Facebook/Meta)** para prever o faturamento futuro.
   - **Interatividade Total:** O usuário pode definir o número de dias para a previsão.
-  - **Gráficos Detalhados:** Exibe não apenas a previsão, mas também os seus componentes: tendência de crescimento, sazonalidade anual (picos de Natal/Black Friday) e sazonalidade semanal.
+  - **Gráficos Detalhados:** Exibe não apenas a previsão, mas também os seus componentes: tendência de crescimento, sazonalidade anual e sazonalidade semanal.
   - **Métricas de Acurácia:** Permite calcular métricas de erro do modelo (**MAPE** e **MAE**) através de validação cruzada para entender a confiabilidade da previsão.
+
+---
+
+## 🗃️ Dados e Metodologia ELT
+
+### Fonte dos Dados
+Os dados utilizados neste projeto são públicos e foram obtidos através da plataforma Kaggle. Eles representam um conjunto de dados de e-commerce anonimizado e rico em informações.
+- **Dataset:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+### Processo de Dados (ELT)
+A preparação dos dados seguiu uma abordagem de **ELT (Extract, Load, Transform)**, otimizando o processamento dentro do banco de dados:
+
+1.  **`[E]` Extract:** Os arquivos `.csv` originais foram extraídos do Kaggle.
+2.  **`[L]` Load:** Cada arquivo foi carregado como uma tabela "crua" (raw) no banco de dados PostgreSQL, sem transformações iniciais.
+3.  **`[T]` Transform:** Utilizando o poder do próprio PostgreSQL, foram executadas consultas SQL para limpar, juntar, tratar tipos e modelar os dados, criando a tabela analítica final (`analytics_orders`) que alimenta o dashboard de forma eficiente.
 
 ---
 
