@@ -85,9 +85,8 @@ def get_delivery_times_and_reviews():
     return df
 
 
-def get_sales_by_dimension(dimension: str):
+def get_sales_by_dimension(dimension: str, allowed_dimensions: list[str]):
     # Validação simples para evitar SQL Injection
-    allowed_dimensions = ['customer_city', 'customer_state', 'product_category_name']
     if dimension not in allowed_dimensions:
         st.error(f"Dimensão de análise inválida: {dimension}")
         return pd.DataFrame()
