@@ -1,5 +1,6 @@
 import pandas as pd
 from prophet import Prophet
+from prophet.diagnostics import cross_validation, performance_metrics
 import streamlit as st
 
 
@@ -32,3 +33,33 @@ def train_and_forecast_model(df: pd.DataFrame, periods: int):
     forecast = model.predict(future)
     
     return model, forecast
+
+
+def evaluate_model(df: pd.DataFrame):
+    """
+    Executa a validação cruzada no modelo e retorna as métricas de performance.
+
+    Args:
+        df (pd.DataFrame): DataFrame com as colunas 'ds' e 'y'.
+
+    Returns:
+        pd.DataFrame: Um DataFrame contendo diversas métricas de erro.
+    """
+    # Configuração da validação cruzada
+    # initial: período inicial de treino
+    # period: a cada quantos dias faremos um novo "corte" de treino
+    # horizon: quantos dias à frente queremos prever em cada corte
+    df_cv = cross_validation(
+        model=Prophet().fit(df),
+        initial='360 days',
+        period='30 days',
+        horizon='60 days',
+        parallel="processes"
+        # initial=f'{len(df)} days',
+        # period=f'{horizon//2} days'
+        # horizon=f'{horizon} days',
+    )
+    
+    df_performance = performance_metrics(df_cv)
+    
+    return df_performance
