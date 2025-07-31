@@ -196,3 +196,7 @@ def get_orders_by_time_period(start_date: str, end_date: str):
     """
     df = fetch_data(query)
     return df if not df.empty else None
+
+
+if __name__ == "__main__":
+    print(get_orders_by_time_period('2016-09-15', '2018-08-29'))

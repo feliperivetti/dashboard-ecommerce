@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-def card_kpi(faturamento_total, total_pedidos, ticket_medio, avaliacao_media, tempo_medio_entrega, total_clientes):
+def kpi_card(faturamento_total, total_pedidos, ticket_medio, avaliacao_media, tempo_medio_entrega, total_clientes):
     with st.container(border=True):
         # TÍTULO CENTRALIZADO USANDO MARKDOWN E HTML
         # st.markdown("<h3 style='text-align: center;'>Métricas Principais</h3>", unsafe_allow_html=True)
