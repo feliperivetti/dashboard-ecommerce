@@ -1,7 +1,7 @@
 from datetime import date
 import streamlit as st
 
-from .. import queries
+import queries
 
 
 def display_orders_data():

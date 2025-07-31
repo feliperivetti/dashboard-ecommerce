@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
-from .. import queries
+import queries
 
 
 def display_correlation_boxplot():
