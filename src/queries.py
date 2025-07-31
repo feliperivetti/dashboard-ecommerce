@@ -59,6 +59,32 @@ def get_raw_delivery_times():
     return df
 
 
+def get_delivery_times_and_reviews():
+    query = """
+        WITH delivery_data AS (
+            SELECT
+                order_id,
+                review_score,
+                (order_delivered_customer_date::DATE - order_purchase_timestamp::DATE) AS dias_para_entrega
+            FROM
+                analytics_orders
+            WHERE
+                order_delivered_customer_date IS NOT NULL AND
+                order_purchase_timestamp IS NOT NULL AND
+                review_score IS NOT NULL
+        )
+        SELECT
+            review_score,
+            dias_para_entrega
+        FROM
+            delivery_data
+        WHERE
+            dias_para_entrega >= 0;
+    """
+    df = fetch_data(query)
+    return df
+
+
 def get_sales_by_dimension(dimension: str):
     # Validação simples para evitar SQL Injection
     allowed_dimensions = ['customer_city', 'customer_state', 'product_category_name']
