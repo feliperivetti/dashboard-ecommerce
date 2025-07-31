@@ -13,9 +13,7 @@ Este projeto é um dashboard interativo e completo para análise de dados de um 
 
 ## 🚀 Demonstração Ao Vivo
 
-### [Clique aqui para ver o dashboard em ação!](URL_DO_SEU_APP_NO_STREAMLIT_CLOUD)
-
-*(Substitua a URL acima pelo link do seu aplicativo após o deploy)*
+### [Clique aqui para ver o dashboard em ação!](https://dashboard-ecommerce-olist.streamlit.app)
 
 ---
 
