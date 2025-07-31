@@ -1,26 +1,48 @@
 import pandas as pd
+import snowflake.connector
 import streamlit as st
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 
 from db_connection import get_db_engine
+from snowflake.snowpark import Session
 
-@st.cache_data
-def fetch_data(query: str):
+@st.cache_resource
+def get_snowflake_connection() -> Session:
     """
-    Executa uma query no banco de dados e retorna o resultado como um DataFrame do Pandas.
-    Usa o cache de dados do Streamlit para performance.
+    Cria e gerencia a conexão com o Snowflake usando a Session do Snowpark.
+    A sessão é guardada em cache para ser reutilizada.
     """
-    engine = get_db_engine()
-    if engine:
+    try:
+        # 2. O builder da Session usa o dicionário de st.secrets diretamente
+        connection_parameters = st.secrets["snowflake"]
+        session = Session.builder.configs(connection_parameters).create()
+        return session
+    except Exception as e:
+        st.error(f"Erro ao conectar ao Snowflake com Snowpark: {e}")
+        return None
+
+def fetch_data(query: str) -> pd.DataFrame:
+    """
+    Executa uma query no Snowflake usando a Session do Snowpark
+    e retorna um DataFrame do Pandas.
+    """
+    session = get_snowflake_connection()
+    if session:
         try:
-            with engine.connect() as connection:
-                df = pd.read_sql(text(query), connection)
-            return df
+            # 3. Executa a query e converte o resultado para Pandas
+            snowpark_df = session.sql(query)
+            pandas_df = snowpark_df.to_pandas()
+            
+            # O Snowpark também retorna nomes de colunas em MAIÚSCULAS.
+            # Convertemos para minúsculas para manter a consistência.
+            pandas_df.columns = pandas_df.columns.str.lower()
+            return pandas_df
         except Exception as e:
             st.error(f"Erro ao executar a query: {e}")
             return pd.DataFrame()
-    return pd.DataFrame()
+    else:
+        return pd.DataFrame()
 
 
 def get_delivery_time_distribution():

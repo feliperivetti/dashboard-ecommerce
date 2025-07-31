@@ -3,5 +3,6 @@ plotly==6.2.0
 prophet==1.1.7
 python-dotenv==1.1.1
 snowflake-connector-python==3.16.0
+snowflake-snowpark-python==1.35.0
 SQLAlchemy==2.0.42
 streamlit==1.47.1
